@@ -49,7 +49,7 @@ export const http = <T>(options: UniApp.RequestOptions) => {
         if (res.statusCode >= 200 && res.statusCode < 300) {
           // 提起核心数据 res.data
           resolve(res.data as Data<T>)
-        } else if (res.statusCode === 401) {
+        } else if (res.statusCode === 401 || res.statusCode === 404) {
           const memberStore = useMemberStore()
           memberStore.clearProfile()
           uni.navigateTo({ url: '/pages/login/login' })
