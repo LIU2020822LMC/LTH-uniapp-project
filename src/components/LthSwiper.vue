@@ -5,13 +5,14 @@ const activeIndex = ref(0)
 
 // 当轮播图滑动时更新激活索引
 const onChange: UniHelper.SwiperOnChange = (ev) => {
-  activeIndex.value = ev.detail.current
+  // 感叹号是非空断言
+  activeIndex.value = ev.detail!.current
 }
 </script>
 
 <template>
   <view class="carousel">
-    <swiper :circular="true" :autoplay="true" :interval="3000">
+    <swiper :circular="true" :autoplay="true" :interval="3000" @change="onChange">
       <swiper-item>
         <navigator url="/pages/index/index" hover-class="none" class="navigator">
           <image
