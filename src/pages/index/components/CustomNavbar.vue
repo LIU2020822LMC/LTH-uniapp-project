@@ -1,22 +1,6 @@
 <script setup lang="ts">
 // 获取屏幕边界到安全区域距离
 const { safeAreaInsets } = uni.getSystemInfoSync()
-import { getHomeBannerAPI } from '@/services/home'
-import { onLoad } from '@dcloudio/uni-app'
-import { ref } from 'vue'
-
-const bannerList = ref<string[]>([])
-
-// 获取首页轮播图数据
-const getHomeBanner = async () => {
-  const res = await getHomeBannerAPI()
-  console.log('首页轮播图数据:', res)
-  // bannerList.value = res.result || []
-}
-
-onLoad(() => {
-  getHomeBanner()
-})
 </script>
 
 <template>
