@@ -1,7 +1,22 @@
 <script setup lang="ts">
 // 获取屏幕边界到安全区域距离
 const { safeAreaInsets } = uni.getSystemInfoSync()
-console.log('安全区域边距:', safeAreaInsets)
+import { getHomeBannerAPI } from '@/services/home'
+import { onLoad } from '@dcloudio/uni-app'
+import { ref } from 'vue'
+
+const bannerList = ref<string[]>([])
+
+// 获取首页轮播图数据
+const getHomeBanner = async () => {
+  const res = await getHomeBannerAPI()
+  console.log('首页轮播图数据:', res)
+  // bannerList.value = res.result || []
+}
+
+onLoad(() => {
+  getHomeBanner()
+})
 </script>
 
 <template>
@@ -26,33 +41,35 @@ console.log('安全区域边距:', safeAreaInsets)
   position: relative;
   display: flex;
   flex-direction: column;
-  padding-bottom: 20rpx;
+  padding-bottom: 24rpx;
+  box-shadow: 0 4rpx 20rpx rgba(7, 89, 133, 0.15);
 
   .logo {
     display: flex;
     align-items: center;
     height: 64rpx;
-    padding-left: 30rpx;
-    padding-top: 10rpx;
+    padding-left: 32rpx;
+    padding-top: 12rpx;
 
     .logo-title {
-      font-size: 38rpx;
+      font-size: 40rpx;
       color: #fff;
       font-weight: 600;
-      letter-spacing: 4rpx;
+      letter-spacing: 6rpx;
       font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
+      text-shadow: 0 2rpx 4rpx rgba(0, 0, 0, 0.1);
     }
 
     .logo-text {
       flex: 1;
       line-height: 28rpx;
-      color: #fff;
+      color: rgba(255, 255, 255, 0.9);
       font-weight: 300;
-      margin: 2rpx 0 0 20rpx;
-      padding-left: 20rpx;
-      border-left: 1rpx solid rgba(255, 255, 255, 0.5);
+      margin: 4rpx 0 0 24rpx;
+      padding-left: 24rpx;
+      border-left: 2rpx solid rgba(255, 255, 255, 0.3);
       font-size: 24rpx;
-      letter-spacing: 2rpx;
+      letter-spacing: 4rpx;
     }
   }
 
@@ -60,33 +77,39 @@ console.log('安全区域边距:', safeAreaInsets)
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0 30rpx;
-    height: 72rpx;
-    margin: 24rpx 30rpx 10rpx;
-    color: #e0f2fe;
-    font-size: 26rpx;
-    border-radius: 12rpx;
-    background-color: rgba(255, 255, 255, 0.15);
-    backdrop-filter: blur(10px);
-    transition: all 0.3s;
+    padding: 0 32rpx;
+    height: 76rpx;
+    margin: 28rpx 32rpx 0;
+    color: #fff;
+    font-size: 28rpx;
+    border-radius: 38rpx;
+    background-color: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(12px);
+    border: 1rpx solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 
     &:active {
-      background-color: rgba(255, 255, 255, 0.25);
+      background-color: rgba(255, 255, 255, 0.3);
+      transform: scale(0.98);
     }
   }
 
   .icon-search {
+    display: flex;
+    align-items: center;
     &::before {
-      margin-right: 14rpx;
-      font-weight: bold;
+      margin-right: 16rpx;
+      font-size: 32rpx;
       color: #fff;
+      opacity: 0.9;
     }
   }
 
   .icon-scan {
-    font-size: 32rpx;
-    padding: 10rpx;
+    font-size: 36rpx;
+    padding: 12rpx;
     color: #fff;
+    opacity: 0.9;
   }
 }
 </style>

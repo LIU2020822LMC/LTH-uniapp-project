@@ -1,4 +1,5 @@
 <script setup lang="ts">
+
 import CustomNavbar from './components/CustomNavbar.vue'
 </script>
 
@@ -8,6 +9,4 @@ import CustomNavbar from './components/CustomNavbar.vue'
   <view class="index">index</view>
 </template>
 
-<style lang="scss">
-//
-</style>
+<style lang="scss"></style>
