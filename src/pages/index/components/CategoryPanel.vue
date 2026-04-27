@@ -21,29 +21,69 @@
 </template>
 
 <style lang="scss">
+// ========== 变量 ==========
+$category-bg: #ffffff;
+$category-text-color: #666666;
+$category-active-bg: #f0f9ff;
+$category-shadow: 0 8rpx 24rpx rgba(15, 23, 42, 0.06);
+
+$category-mt: 20rpx;
+$category-py: 12rpx;
+$item-width: 150rpx;
+$item-py: 14rpx;
+$icon-size: 100rpx;
+$text-size: 26rpx;
+$radius-md: 16rpx;
+$radius-lg: 24rpx;
+$transition-duration: 0.2s;
+
+// ========== 混合器 ==========
+@mixin flex-col-center {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin smooth-transition($props: all) {
+  transition: $props $transition-duration ease;
+}
+
 /* 前台类目 */
 .category {
-  margin: 20rpx 0 0;
-  padding: 10rpx 0;
+  margin-top: $category-mt;
+  padding: $category-py 0;
   display: flex;
   flex-wrap: wrap;
   min-height: 328rpx;
+  background: $category-bg;
+  border-radius: $radius-lg;
+  box-shadow: $category-shadow;
 
   .category-item {
-    width: 150rpx;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    align-items: center;
+    width: $item-width;
+    @include flex-col-center;
+    padding: $item-py 0;
     box-sizing: border-box;
+    border-radius: $radius-md;
+    @include smooth-transition(transform);
+    @include smooth-transition(background-color);
+
+    &:active {
+      transform: scale(0.96);
+      background-color: $category-active-bg;
+    }
 
     .icon {
-      width: 100rpx;
-      height: 100rpx;
+      width: $icon-size;
+      height: $icon-size;
     }
+
     .text {
-      font-size: 26rpx;
-      color: #666;
+      margin-top: 10rpx;
+      font-size: $text-size;
+      color: $category-text-color;
+      line-height: 1.2;
     }
   }
 }
